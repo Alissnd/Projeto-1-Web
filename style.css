@@ -127,3 +127,46 @@ main{
     font-weight: bold;
     border-radius: 120px;
 }
+
+.input-login{
+    display: flex;
+
+}
+
+
+/* estilo textos
+.texto-principal{
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 4.3rem;
+    text-align: center;
+    margin-bottom: -2.1rem;
+}
+
+.texto-secundario{
+    font-size: 7rem;
+    margin-bottom: 0.5rem;
+}
+
+.texto-exp{
+    margin-bottom: 2.3rem;
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-garanta-ingresso{
+    width: 622px;
+    height: 100px;
+    color: white;
+    font-size: 2.6rem;
+    text-transform: uppercase;
+    border: 1px rgba(212, 150, 53);
+    background-color: rgba(212, 150, 53);
+    font-weight: bold;
+    border-radius: 120px;
+}
+
+*/

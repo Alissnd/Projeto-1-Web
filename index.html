@@ -7,6 +7,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +15,9 @@
     <link rel="stylesheet" href="style.css">
     <title>Van Gogh</title>
     <link rel="favicon" href="imagens/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
     <header>
         <div class="menu-content">
@@ -33,6 +36,86 @@
                 </ul>
             </nav>
         </div>
+
+        <div class="input-login">
+            <h2 id="login">login:</h2>
+            <input type="text" placeholder="email" id="email">
+            <button id="entrar">entrar</button>
+        </div>
+
+        <script type="text/javascript" charset="utf-8">
+            let container = document.querySelector('ul');
+            document.querySelector('button').addEventListener('click', function () {
+                axios.get('https://reqres.in/api/users')
+                    .then(function (resposta) {
+                        logado = false;
+                        var input = document.querySelector('#email');
+                        var texto = input.value;
+                        for (let i = 0; i < 6; i++) {
+                            if (texto == resposta.data.data[i].email) {
+                                logado = true;
+                                //alert('Logado com sucesso.');
+                                //console.log(resposta);
+                                var node = document.getElementById("email");
+                                if (node.parentNode) {
+                                    node.parentNode.removeChild(node);
+                                }
+                                var node = document.getElementById("entrar");
+                                if (node.parentNode) {
+                                    node.parentNode.removeChild(node);
+                                }
+                                var node = document.getElementById("login");
+                                if (node.parentNode) {
+                                    node.parentNode.removeChild(node);
+                                }
+
+                                const textNode = document.createTextNode("Logado: " + resposta.data.data[i].first_name);
+                                document.body.appendChild(textNode);
+                                //console.log(resposta.first_name);
+
+                                let container_img = document.querySelector('ul');
+                                document.querySelector('#teste').addEventListener('click', function () {
+                                    axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/436524')
+                                        .then(function (resposta) {
+                                            console.log(resposta.data.title);
+                                            var li = document.createElement('li');
+                                            var obra = document.createElement('img');
+                                            obra.src = 'https://images.metmuseum.org/CRDImages/ep/web-large/DT1567.jpg';
+                                            container.src = resposta.data.primaryImageSmall;
+                                            container_img.appendChild(obra);
+                                        });
+                                })
+
+
+                                break;
+                            }
+                            else {
+                                console.log('Email incorreto.')
+                                //alert('Email incorreto.');
+                                break;
+                            }
+                        }
+                    });
+            })
+        </script>
+
+        <button id="teste">TESTE</button>
+
+        <!--<script type="text/javascript" charset="utf-8">
+            let container_img = document.querySelector('ul');
+            document.querySelector('#teste').addEventListener('click', function () {
+                axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/436524')
+                    .then(function (resposta) {
+                        console.log(resposta.data.title);
+                        var li = document.createElement('li');
+                        var obra = document.createElement('img');
+                        obra.src = 'https://images.metmuseum.org/CRDImages/ep/web-large/DT1567.jpg';
+                        container.src = resposta.data.primaryImageSmall;
+                        container_img.appendChild(obra);
+                    });
+            })
+        </script>-->
+
     </header>
 
     <main>
@@ -44,4 +127,5 @@
         </div>
     </main>
 </body>
+
 </html>
