@@ -130,7 +130,6 @@ main{
 
 .input-login{
     height: 100%;
-    margin: 10px;
 }
 
 #login {
@@ -140,6 +139,7 @@ main{
 .botaoImg{
     flex: auto;
     height: 100%;
+    padding-left: 9px;
 }
 
 .divImagem{
