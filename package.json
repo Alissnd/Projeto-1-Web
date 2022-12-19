@@ -1,0 +1,21 @@
+{
+  "name": "testedotestejwt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon node_modules/nodemon/bin/nodemon.js index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-express": "^1.1.0",
+    "mongodb": "^4.12.1",
+    "nodemon": "^2.0.20"
+  }
+}

@@ -129,8 +129,32 @@ main{
 }
 
 .input-login{
-    display: flex;
+    height: 100%;
+}
 
+#login {
+    display: contents;
+}
+
+.botaoImg{
+    flex: auto;
+    height: 100%;
+    padding-left: 9px;
+}
+
+.divImagem{
+    width: 70%;
+}
+
+#imagem{
+    display: block;
+    position: sticky;
+}
+
+#botaoImagem{
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
 }
 
 
