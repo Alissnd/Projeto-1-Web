@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Index</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <h1>Página super legal</h1>
+  <form action="" method="post" accept-charset="utf-8">
+    <input type="text" name="login" value="" />
+    <input type="password" name="password" value="" />
+    <input type="submit" value="Login &rarr;">
+    <div class='message'></div>
+  </form>
+
+  <div class="container"></div>
+
+  <script type="text/javascript" charset="utf-8">
+    const login = document.querySelector('input[name=login]'),
+      password = document.querySelector('input[name=password]'),
+      submit = document.querySelector('input[type=submit]'),
+      form = document.querySelector('form'),
+      container = document.querySelector('.container'),
+      message = document.querySelector('.message');
+
+    let token = localStorage.getItem('token');
+    if (token) {
+      form.style.display = 'none';
+    }
+
+    submit.addEventListener('click', async (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+
+      try {
+        console.log(login.value);
+        console.log(password.value);
+        const response = await axios.post('./login', {
+          login: login.value,
+          password: password.value
+        });
+        console.log(response.data.token)
+        if (response.data.token) {
+          form.style.display = 'none';
+          token = response.data.token;
+          localStorage.setItem('token', token);
+        }
+      } catch (e) {
+        message.innerHTML = 'Usuario ou Senha incorreto(s)!';
+        console.log(e);
+      }
+
+      return false;
+    });
+
+    async () => {
+      try {
+        const response = await axios.get('./posts', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      } catch (e) {
+        container.innerHTML = 'Usuário não autenticado!'
+      }
+    }
+    
+    setInterval(async () => {
+      try {
+        const response = await axios.get('./posts', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response)
+        render(response.data)
+      } catch (e) {
+        container.innerHTML = 'Usuario não autenticado';
+      }
+    }, 5000);
+  </script>
+</body>
+
+</html>
