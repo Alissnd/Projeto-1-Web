@@ -8,7 +8,6 @@ const http = require('http'),
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'view'));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 const jwtKey = 'senha';
